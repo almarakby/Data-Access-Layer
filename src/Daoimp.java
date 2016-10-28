@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 
 
 public class Daoimp implements ProductDao{
-	public String username ="" ;
-	public String password = "";
+	private String username ="root" ;
+	private String password = "mohamed1995";
 	public void insertProduct(Product product){
 
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/product",username, password);
-		//	JOptionPane.showMessageDialog(null, "connection established");
 
 			PreparedStatement query = connection.prepareStatement("insert into product values(?,?,?,?,?)");
 			query.setString(1, product.getProduct_ID());
@@ -25,10 +24,12 @@ public class Daoimp implements ProductDao{
 			int i = query.executeUpdate();
 
 			if(i>0){
-				JOptionPane.showMessageDialog(null, "product was successfully added");
+			//	JOptionPane.showMessageDialog(null, "product was successfully added");
+				System.out.println("product was successfully added");
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "product was not added");
+			//	JOptionPane.showMessageDialog(null, "product was not added");
+				System.out.println("product was not added");
 			}
 
 			connection.close();
@@ -37,7 +38,8 @@ public class Daoimp implements ProductDao{
 			}
 
 		catch(Exception e){
-			JOptionPane.showMessageDialog(null, "connection failed");
+			//JOptionPane.showMessageDialog(null, "connection failed");
+			System.out.println("connection failed");
 			}
 		}
 
@@ -53,13 +55,15 @@ public void deleteProduct(String Product_ID){
 		query.setString(1,Product_ID);
 
 		int i = query.executeUpdate();
-	//	JOptionPane.showMessageDialog(null, "connection established");
+	
 
 		if(i>0){
-			JOptionPane.showMessageDialog(null, "product was successfully deleted");
+			//JOptionPane.showMessageDialog(null, "product was successfully deleted");
+			System.out.println("product was successfully deleted");
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "product was not deleted");
+			//JOptionPane.showMessageDialog(null, "product was not deleted");
+			System.out.println("product was not deleted");
 		}
 		connection.close();
 
@@ -67,7 +71,8 @@ public void deleteProduct(String Product_ID){
 		}
 
 	catch(Exception e){
-		JOptionPane.showMessageDialog(null, "connection failed");
+		//JOptionPane.showMessageDialog(null, "connection failed");
+		System.out.println("connection failed");
 		}
 	}
 
@@ -88,13 +93,15 @@ public void updateProduct(Product product){
 		query.setString(5, product.getProduct_ID());
 
 		int i = query.executeUpdate();
-//		JOptionPane.showMessageDialog(null, "connection established");
+
 
 		if(i>0){
-			JOptionPane.showMessageDialog(null, "product was successfully deleted");
+			//JOptionPane.showMessageDialog(null, "product was successfully updated");
+			System.out.println("product was successfully updated");
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "product was not deleted");
+			//JOptionPane.showMessageDialog(null, "product was not updated");
+			System.out.println("product was not updated");
 		}
 		connection.close();
 
@@ -102,7 +109,8 @@ public void updateProduct(Product product){
 		}
 
 	catch(Exception e){
-		JOptionPane.showMessageDialog(null, "connection failed");
+		//JOptionPane.showMessageDialog(null, "connection failed");
+		System.out.println("connection failed");
 		}
 	}
 
@@ -116,25 +124,31 @@ public void retrieveProduct(String Manufacturer){
 
 		query.setString(1, Manufacturer);
 		ResultSet result = query.executeQuery();
-
+			
+		/*	if(result.next() != true ){
+				System.out.println("database doesnot contain this manufacturer's product");
+			}*/
+		
 		while(result.next()){
+			
 			String id = result.getString("Product_ID");
 			 String type = result.getString("Type");
 			 String productionDate = result.getString("Production");
 			 String expiryDate = result.getString("Expiry_Date");
 		//	 JOptionPane.showMessageDialog(null," id: "+id+ " Type: "+type+" production date: "+productionDate+" expiray date "+expiryDate);
-			 System.out.println(" id: "+id+ " Type: "+type+" production date: "+productionDate+" expiray date "+expiryDate);
+			 System.out.println(" product id: " +id+ " product Type: "+type+" production date: "+productionDate+" expiray date "+expiryDate);
 
 		}
 
 
 
-//		JOptionPane.showMessageDialog(null, "connection established");
+
 
 	}
 
 	catch(Exception e){
-		JOptionPane.showMessageDialog(null, "connection failed");
+		//JOptionPane.showMessageDialog(null, "connection failed");
+		System.out.println("connection failed");
 		}
 	}
 

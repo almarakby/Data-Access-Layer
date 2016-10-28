@@ -11,6 +11,7 @@ public class TestClass {
 		
 		switch(choise){
 		
+		/* insert */
 		case "1":
 			
 			System.out.print("enter product id: ");
@@ -22,20 +23,25 @@ public class TestClass {
 			System.out.print("enter product manufacturer: ");
 			String manufacturer = input.nextLine();
 			
-			
-			
+			System.out.print("enter product production date: ");
+			String Production_date = input.nextLine();
+	
+			System.out.print("enter product expiry date: ");
+			String Expiray_date = input.nextLine();
+		
+		
 			Product p1 = new Product();
 			p1.setProduct_ID(id);
 			p1.setManufacturer(manufacturer);
-			p1.setExpiray_date("1010201");
-			p1.setProduction_date("101102013");
+			p1.setExpiray_date(Expiray_date);
+			p1.setProduction_date(Production_date);
 			p1.setType(type);
 			Daoimp tst = new Daoimp();
 			tst.insertProduct(p1);		
 		
 			break;
 		
-		
+		/* delete */
 		case "2":
 			
 			System.out.print("enter product id: ");
@@ -44,6 +50,7 @@ public class TestClass {
 			tst1.deleteProduct(id1);
 			break;
 			
+		/* update */	
 		case "3":
 			System.out.print("enter product id: ");
 			String id2 = input.nextLine();
@@ -54,19 +61,26 @@ public class TestClass {
 			System.out.print("enter product manufacturer: ");
 			String manufacturer1 = input.nextLine();
 			
+			System.out.print("enter product production date: ");
+			String Production_date2 = input.nextLine();
+	
+			System.out.print("enter product expiry date: ");
+			String Expiray_date2 = input.nextLine();
+		
 			
 			
 			Product p2 = new Product();
 			p2.setProduct_ID(id2);
 			p2.setManufacturer(manufacturer1);
-			p2.setExpiray_date("1010201");
-			p2.setProduction_date("101102013");
+			p2.setExpiray_date(Expiray_date2);
+			p2.setProduction_date(Production_date2);
 			p2.setType(type1);
 			Daoimp tst2 = new Daoimp();
 			tst2.updateProduct(p2);		
 		
 		break;
 		
+		/* retrieve */
 		case "4":
 			System.out.print("enter manufacturer: ");
 			String manufacturer11 = input.nextLine();
@@ -83,14 +97,7 @@ public class TestClass {
 		catch (Exception e){
 			System.out.print("plesae enter a valid number");
 		}
-		
-		
-		
-		
-		
-	}
-	
-
-
+			
+	}	
 
 }
